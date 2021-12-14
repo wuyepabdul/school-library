@@ -19,5 +19,21 @@ class Person
     @age
   end
 
-  
+  def name=(name)
+    @name = name
+  end
+
+  def age=(age)
+    @age = age
+  end
+
+  def can_use_services?
+    @parent_permission
+  end
+
+  def is_of_age?
+    @age >= 18
+  end
+  private_class_method :is_of_age?
+
 end
