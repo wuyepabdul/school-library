@@ -30,4 +30,8 @@ class Person
   def of_age?
     @age >= 18
   end
+
+  def to_s
+    "Name: #{@name}, ID: #{@id}, Age: #{@age}"
+  end
 end
