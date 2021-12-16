@@ -160,3 +160,10 @@ class App
       @rentals.each { |rental| puts rental if rental.person.id == id.to_i }
     end
   end
+
+  def main
+    app = App.new
+    app.start
+  end
+
+  main()
