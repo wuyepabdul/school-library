@@ -12,7 +12,7 @@ class Person
     @corrector = Corrector.new
     @rentals = []
   end
-  
+
   def add_rentals(person)
     @rentals.push(person)
   end
