@@ -10,4 +10,9 @@ class Rental
     @person = person
     person.rentals << self
   end
+
+  def to_s
+    # puts "Debug ==> Date: #{@date}, Book: \"#{book}\" by #{book}"
+    "Date: #{@date}, Book: \"#{book.title}\" by #{@book.author}"
+  end
 end

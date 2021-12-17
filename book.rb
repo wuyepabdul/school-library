@@ -10,4 +10,8 @@ class Book
   def add_rental(book)
     @rentals.push(book)
   end
+
+  def to_s
+    "Title: \"#{@title}\", Author: #{author}"
+  end
 end
