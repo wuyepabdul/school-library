@@ -146,10 +146,10 @@ class App
     print 'Date: '
     date = gets.chomp
 
-    rental = Rental.new(date, @books[book_i], @people[person_i])
+    rental = Rental.new(date, @people[person_i], @books[book_i],)
     @rentals.push(rental)
 
-    puts 'Rental created successfully'
+    puts 'Rental created successfullyy'
   end
 
   def list_rentals
