@@ -1,6 +1,13 @@
+require './person'
+require './student'
+require './rentals'
+require './teacher'
+require './classroom'
+require './bookStorage'
+
 class App
     def initialize
-      @books = []
+      @bookStorage = BookStorage.new
       @rentals = []
       @people = []
     end
@@ -8,13 +15,13 @@ class App
     def handle_action(option)
       case option
       when '1'
-        list_books
+        @bookStorage.list_books
       when '2'
         list_people
       when '3'
         create_person
       when '4'
-        create_book
+        @bookStorage.create_book
       when '5'
         create_rental
       when '6'
@@ -24,10 +31,6 @@ class App
       end
     end
     private
-  
-    def list_books
-      @books.each { |book| puts book }
-    end
   
     def list_people
       @people.each { |person| puts person }
@@ -80,22 +83,9 @@ class App
       puts 'Person created successfully'
     end
   
-    def create_book
-      print 'Title: '
-      title = gets.chomp
-  
-      print 'Author: '
-      author = gets.chomp
-  
-      book = Book.new(title, author)
-      @books.push(book)
-  
-      puts 'Book created successfully'
-    end
-  
     def create_rental
       puts 'Select a book from the following list by number'
-      @books.each_with_index { |book, i| puts "#{i}) #{book}" }
+      @bookStorage.each_with_index { |book, i| puts "#{i}) #{book}" }
   
       book_i = gets.chomp.to_i
   
@@ -109,7 +99,7 @@ class App
       print 'Date: '
       date = gets.chomp
   
-      rental = Rental.new(date, @people[person_i], @books[book_i],)
+      rental = Rental.new(date, @people[person_i], @bookStorage.get_book_at_index(book_i))
       @rentals.push(rental)
   
       puts 'Rental created successfullyy'
