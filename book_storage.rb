@@ -24,7 +24,7 @@ class BookStorage
 
   def create_book
     book_info = book_details
-    add_book(book_info[0], book_info[0])
+    add_book(book_info[0], book_info[1])
     puts 'Book created successfully'
   end
 
