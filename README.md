@@ -14,7 +14,7 @@ cd school-library
 git checkout associations
 ```
 
-## Author
+## Authors
 
 
 👤 **Abdul Wuyep**
@@ -23,6 +23,11 @@ git checkout associations
 - Twitter: [@AbdulWuyep](https://twitter.com/AbdulWuyep)
 - LinkedIn: [Abdul Wuyep](https://www.linkedin.com/in/abdul-wuyep/)
 
+👤 **Brian Orora**
+
+- GitHub: [@MrBrN197](https://github.com/MrBrN197)
+- Twitter: [@MrBrN197](https://twitter.com/MrBrN197)
+- LinkedIn: [Orora Brian](https://www.linkedin.com/in/orora-brian/)
 
 ## 🤝 Contributing
 
