@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require './app.rb'
+require './app'
 
 def main
   app = App.new
@@ -16,6 +16,7 @@ def main
     puts '7 - Exit'
     option = gets.chomp
     break if option == '7'
+
     app.handle_action(option)
   end
   puts 'Thank you for using this app!'

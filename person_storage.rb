@@ -2,15 +2,15 @@ require_relative './person'
 require_relative './teacher'
 
 class PersonStorage
-   def initialize
-      @people = []
-   end
+  def initialize
+    @people = []
+  end
 
-   def list_people
+  def list_people
     @people.each { |person| puts person }
   end
 
-   def create_person
+  def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     choice = gets.chomp
 
@@ -64,5 +64,4 @@ class PersonStorage
   def get_person_at_index(index)
     @people[index]
   end
-
 end
