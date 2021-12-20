@@ -25,35 +25,45 @@ class PersonStorage
     end
   end
 
-  def create_student
+  def student_details
     print 'Age: '
     age = gets.chomp
-
     print 'Name: '
     name = gets.chomp
-
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.downcase == 'y'
+    [age, name, parent_permission]
+  end
 
+  def add_student(age, name, parent_permission)
     student = Student.new(age: age, name: name, parent_permission: parent_permission, classroom: @classroom)
     @people.push(student)
+  end
 
+  def create_student
+    student_info = student_details
+    add_student(student_info[0], student_info[1], student_info[2])
     puts 'Person created successfully'
   end
 
-  def create_teacher
+  def teacher_details
     print 'Age: '
     age = gets.chomp
-
     print 'Name: '
     name = gets.chomp
-
     print 'Specialization: '
     specialization = gets.chomp
+    [age, name, specialization]
+  end
 
+  def add_teacher(age, name, specialization)
     teacher = Teacher.new(age: age, name: name, specialization: specialization)
     @people.push(teacher)
+  end
 
+  def create_teacher
+    teacher_info = teacher_details
+    add_teacher(teacher_info[0], teacher_info[1], teacher_info[2])
     puts 'Person created successfully'
   end
 
