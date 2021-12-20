@@ -9,16 +9,22 @@ class BookStorage
     @books.each { |book| puts book }
   end
 
-  def create_book
-    print 'Title: '
-    title = gets.chomp
-
-    print 'Author: '
-    author = gets.chomp
-
+  def add_book(title, author)
     book = Book.new(title, author)
     @books.push(book)
+  end
 
+  def book_details
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    [title, author]
+  end
+
+  def create_book
+    book_info = book_details
+    add_book(book_info[0], book_info[0])
     puts 'Book created successfully'
   end
 
