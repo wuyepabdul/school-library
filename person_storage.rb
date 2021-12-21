@@ -1,10 +1,13 @@
 require_relative './person'
 require_relative './teacher'
 require_relative './store_data'
+require 'json'
 
 class PersonStorage
   def initialize
     @people = []
+    data = File.read('people.json')
+    @people = JSON.parse(data)
   end
 
   def list_people
