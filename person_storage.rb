@@ -1,5 +1,6 @@
 require_relative './person'
 require_relative './teacher'
+require_relative './store_data'
 
 class PersonStorage
   def initialize
@@ -73,5 +74,10 @@ class PersonStorage
 
   def get_person_at_index(index)
     @people[index]
+  end
+
+  def save
+    store = StoreData.new
+    store.store_data_in_file('people.json',@people)
   end
 end

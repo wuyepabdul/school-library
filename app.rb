@@ -27,6 +27,9 @@ class App
       create_rental
     when '6'
       list_rentals
+    when '7'
+      @person_storage.save
+      return false
     else
       puts 'That is not a valid option'
     end
