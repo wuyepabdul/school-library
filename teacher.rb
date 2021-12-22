@@ -13,4 +13,14 @@ class Teacher < Person
   def to_s
     "[Teacher] #{super}"
   end
+
+  def to_json(json)
+    json.generate({
+      age: @age,
+      name: @name,
+      specialization: @specialization,
+      parent_permission: @parent_permission
+    })
+  end
+
 end

@@ -4,6 +4,9 @@ require_relative './store_data'
 require 'json'
 
 class PersonStorage
+
+  attr_reader :people
+
   def initialize
     @people = load_books
     @classroom = Classroom.new('all')
@@ -104,6 +107,6 @@ class PersonStorage
 
   def save
     store = StoreData.new
-    store.store_data_in_file('people.json',@people)
+    store.store_data_in_file('./data/people.json',@people)
   end
 end

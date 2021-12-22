@@ -1,6 +1,7 @@
 require './book'
 
 class BookStorage
+  attr_reader :books
   def initialize
     @books = load_books
   end
