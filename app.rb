@@ -29,6 +29,7 @@ class App
       list_rentals
     when '7'
       @person_storage.save
+      @book_storage.save
       return false
     else
       puts 'That is not a valid option'

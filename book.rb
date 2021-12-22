@@ -14,4 +14,11 @@ class Book
   def to_s
     "Title: \"#{@title}\", Author: #{author}"
   end
+
+  def to_json(json)
+    json.generate({
+      title: @title,
+      author: @author
+    })
+  end
 end

@@ -2,7 +2,16 @@ require './book'
 
 class BookStorage
   def initialize
-    @books = []
+    @books = load_books
+    puts "@books", @books
+  end
+
+  def load_books 
+    return [] unless File.exist?('./data/books.json')
+    data = File.read('./data/books.json')
+    JSON.parse(data).map do |book|
+      Book.new(book["title"], book["author"])
+    end
   end
 
   def list_books
@@ -35,4 +44,9 @@ class BookStorage
   def get_book_at_index(index)
     @books[index]
   end
+  
+  def save
+    File.write('data/books.json', JSON.generate(@books))
+  end
+
 end
