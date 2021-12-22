@@ -3,10 +3,9 @@ require './book'
 class BookStorage
   def initialize
     @books = load_books
-    puts "@books", @books
   end
 
-  def load_books 
+  def load_books
     return [] unless File.exist?('./data/books.json')
     data = File.read('./data/books.json')
     JSON.parse(data).map do |book|

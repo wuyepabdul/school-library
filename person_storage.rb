@@ -5,9 +5,32 @@ require 'json'
 
 class PersonStorage
   def initialize
-    @people = []
-    data = File.read('people.json')
-    @people = JSON.parse(data)
+    @people = load_books
+    @classroom = Classroom.new('all')
+  end
+  
+  def load_books
+
+    return [] unless File.exist?('./data/people.json')
+    data = File.read('./data/people.json')
+    JSON.parse(data).map do |person|
+      result = if(person['specialization'])
+        Teacher.new(
+          age: person['age'],
+          specialization: person['specialization'],
+          name: person['name'],
+          parent_permission: person['parent_permission'],
+        )
+      else
+        Student.new(
+          classroom: @classroom,
+          age: person['age'],
+          name: person['name'],
+          parent_permission: person['parent_permission']
+        )
+      end
+      result
+    end
   end
 
   def list_people
