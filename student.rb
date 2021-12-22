@@ -20,4 +20,8 @@ class Student < Person
   def to_s
     "[Student] #{super}"
   end
+
+  def to_json(json)
+    json.generate({ 'name' => @name, 'age' => @age, 'parent_permission' => @parent_permission })
+  end
 end

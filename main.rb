@@ -15,9 +15,9 @@ def main
     puts '6 - List all rentals for a given person id'
     puts '7 - Exit'
     option = gets.chomp
-    break if option == '7'
 
-    app.handle_action(option)
+    exit_app = app.handle_action(option)
+    break if exit_app == true
   end
   puts 'Thank you for using this app!'
 end

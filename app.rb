@@ -1,18 +1,31 @@
-require './person'
-require './student'
-require './rentals'
-require './teacher'
-require './classroom'
-require './book_storage'
-require './person_storage'
+require_relative './person'
+require_relative './student'
+require_relative './rentals'
+require_relative './teacher'
+require_relative './classroom'
+require_relative './book_storage'
+require_relative './person_storage'
+require 'json'
 
 class App
   def initialize
     @book_storage = BookStorage.new
-    @rentals = []
     @person_storage = PersonStorage.new
+    @rentals = load_rentals
   end
 
+  def load_rentals
+    return [] unless File.exist? './data/rentals.json'
+
+    data = File.read './data/rentals.json'
+    JSON.parse(data).map do |rental|
+      person = @person_storage.get_person_at_index(rental['person_idx'])
+      book = @book_storage.get_book_at_index(rental['book_idx'])
+      Rental.new(rental['date'], person, book)
+    end
+  end
+
+  # rubocop:disable Metrics/CyclomaticComplexity
   def handle_action(option)
     case option
     when '1'
@@ -27,10 +40,14 @@ class App
       create_rental
     when '6'
       list_rentals
+    when '7'
+      save
+      true
     else
       puts 'That is not a valid option'
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   private
 
@@ -65,5 +82,20 @@ class App
 
     puts 'Rentals:'
     @rentals.each { |rental| puts rental if rental.person.id == id.to_i }
+  end
+
+  def save
+    Dir.mkdir './data' unless Dir.exist? './data'
+    @person_storage.save
+    @book_storage.save
+    # save rentals
+    data = @rentals.map do |rental|
+      {
+        date: rental.date,
+        book_idx: @book_storage.books.index(rental.book),
+        person_idx: @person_storage.people.index(rental.person)
+      }
+    end
+    File.write('./data/rentals.json', JSON.generate(data))
   end
 end
