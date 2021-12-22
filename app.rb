@@ -19,8 +19,8 @@ class App
 
     data = File.read './data/rentals.json'
     JSON.parse(data).map do |rental|
-      person = @people[rental['person_idx']]
-      book = @books[rental['book_idx']]
+      person = @person_storage.get_person_at_index(rental['person_idx'])
+      book = @book_storage.get_book_at_index(rental['book_idx'])
       Rental.new(rental['date'], person, book)
     end
   end
