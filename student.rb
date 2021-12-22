@@ -22,6 +22,6 @@ class Student < Person
   end
 
   def to_json(json)
-    json.generate({"name"=>@name, "age"=>@age, "parent_permission"=>@parent_permission})
+    json.generate({ 'name' => @name, 'age' => @age, 'parent_permission' => @parent_permission })
   end
 end

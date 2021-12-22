@@ -4,34 +4,33 @@ require_relative './store_data'
 require 'json'
 
 class PersonStorage
-
   attr_reader :people
 
   def initialize
     @people = load_books
     @classroom = Classroom.new('all')
   end
-  
-  def load_books
 
+  def load_books
     return [] unless File.exist?('./data/people.json')
+
     data = File.read('./data/people.json')
     JSON.parse(data).map do |person|
-      result = if(person['specialization'])
-        Teacher.new(
-          age: person['age'],
-          specialization: person['specialization'],
-          name: person['name'],
-          parent_permission: person['parent_permission'],
-        )
-      else
-        Student.new(
-          classroom: @classroom,
-          age: person['age'],
-          name: person['name'],
-          parent_permission: person['parent_permission']
-        )
-      end
+      result = if person['specialization']
+                 Teacher.new(
+                   age: person['age'],
+                   specialization: person['specialization'],
+                   name: person['name'],
+                   parent_permission: person['parent_permission']
+                 )
+               else
+                 Student.new(
+                   classroom: @classroom,
+                   age: person['age'],
+                   name: person['name'],
+                   parent_permission: person['parent_permission']
+                 )
+               end
       result
     end
   end
@@ -107,6 +106,6 @@ class PersonStorage
 
   def save
     store = StoreData.new
-    store.store_data_in_file('./data/people.json',@people)
+    store.store_data_in_file('./data/people.json', @people)
   end
 end

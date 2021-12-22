@@ -17,10 +17,9 @@ def main
     option = gets.chomp
 
     exit_app = app.handle_action(option)
-    if exit_app == false then break end
+    break if exit_app
   end
   puts 'Thank you for using this app!'
-
 end
 
 main

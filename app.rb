@@ -12,19 +12,20 @@ class App
     @book_storage = BookStorage.new
     @person_storage = PersonStorage.new
     @rentals = load_rentals
-    puts "Loaded Rentals", @rentals
   end
 
   def load_rentals
     return [] unless File.exist? './data/rentals.json'
+
     data = File.read './data/rentals.json'
     JSON.parse(data).map do |rental|
-      person = @person_storage.get_person_at_index(rental['person_idx'])
-      book = @book_storage.get_book_at_index(rental['book_idx'])
+      person = @people[rental['person_idx']]
+      book = @books[rental['book_idx']]
       Rental.new(rental['date'], person, book)
     end
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def handle_action(option)
     case option
     when '1'
@@ -41,11 +42,12 @@ class App
       list_rentals
     when '7'
       save
-      return false
+      true
     else
       puts 'That is not a valid option'
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   private
 
@@ -94,8 +96,6 @@ class App
         person_idx: @person_storage.people.index(rental.person)
       }
     end
-    puts "Saving ", data
     File.write('./data/rentals.json', JSON.generate(data))
   end
-
 end

@@ -15,12 +15,13 @@ class Teacher < Person
   end
 
   def to_json(json)
-    json.generate({
-      age: @age,
-      name: @name,
-      specialization: @specialization,
-      parent_permission: @parent_permission
-    })
+    json.generate(
+      {
+        age: @age,
+        name: @name,
+        specialization: @specialization,
+        parent_permission: @parent_permission
+      }
+    )
   end
-
 end
