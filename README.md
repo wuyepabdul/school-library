@@ -9,15 +9,15 @@
 ## Getting Started
 
 ```
-cd git clone https://github.com/wuyepabdul/school-library
+git clone https://github.com/wuyepabdul/school-library
 cd school-library
-git checkout associations
 ```
 
 ## Tests
 ```
-cd git clone https://github.com/wuyepabdul/school-library
-cd school-library 
+git clone https://github.com/wuyepabdul/school-library
+cd school-library
+bundle install
 gem install rspec
 rspec
 ```
