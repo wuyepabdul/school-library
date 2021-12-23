@@ -3,7 +3,7 @@ require_relative '../teacher'
 require_relative '../book'
 
 describe Rental do
-  it 'should initialize it\'s  parameters correctly' do 
+  it 'should initialize it\'s  parameters correctly' do
     teacher = Teacher.new(age: 32, specialization: 'technician', name: 'Mike')
     book = Book.new('The Hunger Games', 'Suzanne Collins')
     rental = Rental.new('2002/05/04', teacher, book)
