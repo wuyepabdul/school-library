@@ -14,6 +14,14 @@ cd school-library
 git checkout associations
 ```
 
+## Tests
+```
+cd git clone https://github.com/wuyepabdul/school-library
+cd school-library 
+gem install rspec
+rspec
+```
+
 ## Authors
 
 
